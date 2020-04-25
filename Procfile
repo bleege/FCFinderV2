@@ -1,0 +1,1 @@
+web: ./build/install/FCFinderV2/bin/FCFinderV2
