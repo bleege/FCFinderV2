@@ -29,7 +29,7 @@ class Application {
 
         private fun setupPort() {
             val processBuilder = ProcessBuilder()
-            val portEnvironment = processBuilder.environment().get("PORT")
+            val portEnvironment = processBuilder.environment()["PORT"]
             val portInt = Integer.parseInt(portEnvironment ?: "4567")
             logger.info("PORT set to $portInt")
             port(portInt)
@@ -37,7 +37,7 @@ class Application {
 
         private fun setupRoutes() {
 
-            get("/") { request, response ->
+            get("/") { _, _ ->
                 Date().toString()
             }
 
