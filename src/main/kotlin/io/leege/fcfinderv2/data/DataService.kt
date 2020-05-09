@@ -1,6 +1,6 @@
 package io.leege.fcfinderv2.data
 
-import io.leege.fcfinderv2.data.tables.CountryTable
+import io.leege.fcfinderv2.data.tables.Countries
 import io.leege.fcfinderv2.schemas.models.Country
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.ResultRow
@@ -15,15 +15,15 @@ class DataService {
             user = "snetofsxfiajkf", password = "31d115e6cbd4a952c010c1b93becfc83b12443199e92935fba00c9ced622613e")
 
         val result = transaction {
-            CountryTable.selectAll().map { it.toCountry() }
+            Countries.selectAll().map { it.toCountry() }
         }
 
         return result
     }
 
     fun ResultRow.toCountry() = Country (
-        id = this[CountryTable.id],
-        name = this[CountryTable.name]
+        id = this[Countries.id],
+        name = this[Countries.name]
     )
 
 }
