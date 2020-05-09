@@ -1,5 +1,6 @@
 package io.leege.fcfinderv2
 
+import io.leege.fcfinderv2.schemas.CountryService
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.LoggerFactory
 import spark.Spark.get
@@ -37,8 +38,14 @@ class Application {
 
         private fun setupRoutes() {
 
+            val countryService = CountryService()
+
             get("/") { _, _ ->
                 Date().toString()
+            }
+
+            get("/countries") { _, _ ->
+                countryService.getAllCountries()
             }
 
         }
