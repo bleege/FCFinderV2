@@ -1,5 +1,6 @@
 package io.leege.fcfinderv2
 
+import io.leege.fcfinderv2.schemas.ClubsService
 import io.leege.fcfinderv2.schemas.CountryService
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.LoggerFactory
@@ -39,6 +40,7 @@ class Application {
         private fun setupRoutes() {
 
             val countryService = CountryService()
+            val clubsService = ClubsService()
 
             get("/") { _, _ ->
                 Date().toString()
@@ -46,6 +48,10 @@ class Application {
 
             get("/countries") { _, _ ->
                 countryService.getAllCountries()
+            }
+
+            get("/clubs") { _,_ ->
+                clubsService.getAllClubs()
             }
 
         }
