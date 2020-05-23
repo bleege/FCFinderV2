@@ -4,9 +4,7 @@ import io.leege.fcfinderv2.data.tables.Clubs
 import io.leege.fcfinderv2.data.tables.Countries
 import io.leege.fcfinderv2.schemas.models.Club
 import io.leege.fcfinderv2.schemas.models.Country
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.selectAll
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class DataService {
@@ -19,12 +17,14 @@ class DataService {
     fun getAllCountries(): List<Country> {
 
         return transaction {
+            addLogger(Slf4jSqlDebugLogger)
             Countries.selectAll().map { it.toCountry() }
         }
     }
 
     fun getAllClubs(): List<Club> {
         return transaction {
+            addLogger(Slf4jSqlDebugLogger)
             Clubs.selectAll().map { it.toClub() }
         }
     }
