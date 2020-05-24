@@ -2,6 +2,7 @@ package io.leege.fcfinderv2
 
 import io.leege.fcfinderv2.schemas.ClubsService
 import io.leege.fcfinderv2.schemas.CountryService
+import io.leege.fcfinderv2.schemas.LeagueService
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.LoggerFactory
 import spark.Spark.get
@@ -41,17 +42,22 @@ class Application {
 
             val countryService = CountryService()
             val clubsService = ClubsService()
+            val leagueService = LeagueService()
 
             get("/") { _, _ ->
                 Date().toString()
+            }
+
+            get("/clubs") { _,_ ->
+                clubsService.getAllClubs()
             }
 
             get("/countries") { _, _ ->
                 countryService.getAllCountries()
             }
 
-            get("/clubs") { _,_ ->
-                clubsService.getAllClubs()
+            get("/leagues") { _,_ ->
+                leagueService.getAllLeagues()
             }
 
         }
