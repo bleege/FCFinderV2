@@ -5,8 +5,7 @@ import io.leege.fcfinderv2.schemas.CountryService
 import io.leege.fcfinderv2.schemas.LeagueService
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.LoggerFactory
-import spark.Spark.get
-import spark.Spark.port
+import spark.Spark.*
 import java.util.*
 
 class Application {
@@ -43,10 +42,13 @@ class Application {
             val countryService = CountryService()
             val clubsService = ClubsService()
             val leagueService = LeagueService()
+            val graphQLHandler = GraphQLHandler()
 
             get("/") { _, _ ->
                 Date().toString()
             }
+
+            /* REST Data Handlers */
 
             get("/clubs") { _,_ ->
                 clubsService.getAllClubs()
@@ -58,6 +60,25 @@ class Application {
 
             get("/leagues") { _,_ ->
                 leagueService.getAllLeagues()
+            }
+
+            /* GraphQL Handler */
+
+            post("/graphql") { request, response ->
+                graphQLHandler.handle(request, response)
+            }
+
+            internalServerError() { _, response ->
+                response.status(500)
+                response.type("application/text")
+                "Unable to process request"
+            }
+
+            options("/graphql") { _, _ -> "ok" }
+
+            before("/graphql") { request, response ->
+                response.header("Access-Control-Allow-Origin", "*")
+                response.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
             }
 
         }
