@@ -17,7 +17,7 @@ class DataService {
     fun getAllClubs(): List<io.leege.fcfinderv2.schemas.models.Club> {
         return transaction {
             addLogger(Slf4jSqlDebugLogger)
-            Club.all().map { io.leege.fcfinderv2.schemas.models.Club(id = it.id.value, countryId = it.country.id.value, name = it.name, latitude = it.latitude, longitude = it.longitude ) }
+            Club.all().map { io.leege.fcfinderv2.schemas.models.Club(id = it.id.value, countryId = it.country.id.value, name = it.name, stadiumName = it.stadium, latitude = it.latitude, longitude = it.longitude ) }
 //            Clubs.selectAll().map { it.toClub() }
         }
     }
