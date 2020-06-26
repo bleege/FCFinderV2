@@ -1,10 +1,8 @@
 package io.leege.fcfinderv2.data
 
-import io.leege.fcfinderv2.data.tables.Clubs
-import io.leege.fcfinderv2.data.tables.Countries
+import io.leege.fcfinderv2.data.tables.Club
+import io.leege.fcfinderv2.data.tables.Country
 import io.leege.fcfinderv2.data.tables.Leagues
-import io.leege.fcfinderv2.schemas.models.Club
-import io.leege.fcfinderv2.schemas.models.Country
 import io.leege.fcfinderv2.schemas.models.League
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -19,7 +17,8 @@ class DataService {
     fun getAllClubs(): List<Club> {
         return transaction {
             addLogger(Slf4jSqlDebugLogger)
-            Clubs.selectAll().map { it.toClub() }
+            Club.all().map { it }
+//            Clubs.selectAll().map { it.toClub() }
         }
     }
 
@@ -27,7 +26,8 @@ class DataService {
 
         return transaction {
             addLogger(Slf4jSqlDebugLogger)
-            Countries.selectAll().map { it.toCountry() }
+            Country.all().map { it }
+//            Countries.selectAll().map { it.toCountry() }
         }
     }
 
@@ -38,19 +38,19 @@ class DataService {
         }
     }
 
-    fun ResultRow.toClub() = Club (
-        id = this[Clubs.id],
-        countryId = this[Clubs.countryID],
-        name = this[Clubs.name],
-        stadiumName = this[Clubs.stadium],
-        latitude = this[Clubs.latitude],
-        longitude = this[Clubs.longitude]
-    )
-
-    fun ResultRow.toCountry() = Country (
-        id = this[Countries.id],
-        name = this[Countries.name]
-    )
+//    fun ResultRow.toClub() = Club (
+//        id = this[Clubs.id],
+//        countryId = this[Clubs.countryID],
+//        name = this[Clubs.name],
+//        stadiumName = this[Clubs.stadium],
+//        latitude = this[Clubs.latitude],
+//        longitude = this[Clubs.longitude]
+//    )
+//
+//    fun ResultRow.toCountry() = Country (
+//        id = this[Countries.id],
+//        name = this[Countries.name]
+//    )
 
     fun ResultRow.toLeague() = League (
         id = this[Leagues.id],
