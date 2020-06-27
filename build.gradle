@@ -19,15 +19,15 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    compile "org.jetbrains.exposed:exposed-core:0.23.1"
-    compile "org.jetbrains.exposed:exposed-dao:0.23.1"
-    compile "org.jetbrains.exposed:exposed-jdbc:0.23.1"
-    compile "com.expediagroup:graphql-kotlin-schema-generator:2.1.1"
-    compile "com.sparkjava:spark-core:2.9.1"
-    compile "org.postgresql:postgresql:42.2.2"
-    compile "org.slf4j:slf4j-log4j12:1.7.30"
-    compile "log4j:log4j:1.2.17"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.exposed:exposed-core:0.23.1"
+    implementation "org.jetbrains.exposed:exposed-dao:0.23.1"
+    implementation "org.jetbrains.exposed:exposed-jdbc:0.23.1"
+    implementation "com.expediagroup:graphql-kotlin-schema-generator:2.1.1"
+    implementation "com.sparkjava:spark-core:2.9.1"
+    implementation "org.postgresql:postgresql:42.2.2"
+    implementation "org.slf4j:slf4j-log4j12:1.7.30"
+    implementation "log4j:log4j:1.2.17"
 }
 
 compileKotlin {

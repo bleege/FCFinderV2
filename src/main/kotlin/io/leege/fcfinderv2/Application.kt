@@ -42,7 +42,7 @@ class Application {
             val countryService = CountryService()
             val clubsService = ClubsService()
             val leagueService = LeagueService()
-//            val graphQLHandler = GraphQLHandler()
+            val graphQLHandler = GraphQLHandler()
 
             get("/") { _, _ ->
                 Date().toString()
@@ -64,22 +64,22 @@ class Application {
 
             /* GraphQL Handler */
 
-//            post("/graphql") { request, response ->
-//                graphQLHandler.handle(request, response)
-//            }
-//
-//            internalServerError() { _, response ->
-//                response.status(500)
-//                response.type("application/text")
-//                "Unable to process request"
-//            }
-//
-//            options("/graphql") { _, _ -> "ok" }
-//
-//            before("/graphql") { request, response ->
-//                response.header("Access-Control-Allow-Origin", "*")
-//                response.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
-//            }
+            post("/graphql") { request, response ->
+                graphQLHandler.handle(request, response)
+            }
+
+            internalServerError() { _, response ->
+                response.status(500)
+                response.type("application/text")
+                "Unable to process request"
+            }
+
+            options("/graphql") { _, _ -> "ok" }
+
+            before("/graphql") { request, response ->
+                response.header("Access-Control-Allow-Origin", "*")
+                response.header("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+            }
 
         }
 
