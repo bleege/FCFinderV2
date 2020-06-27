@@ -2,8 +2,7 @@ package io.leege.fcfinderv2.data
 
 import io.leege.fcfinderv2.data.tables.Club
 import io.leege.fcfinderv2.data.tables.Country
-import io.leege.fcfinderv2.data.tables.Leagues
-import io.leege.fcfinderv2.schemas.models.League
+import io.leege.fcfinderv2.data.tables.League
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -31,33 +30,12 @@ class DataService {
         }
     }
 
-    fun getAllLeagues(): List<League> {
+    fun getAllLeagues(): List<io.leege.fcfinderv2.schemas.models.League> {
         return transaction {
             addLogger(Slf4jSqlDebugLogger)
-            Leagues.selectAll().map { it.toLeague() }
+            League.all().map { io.leege.fcfinderv2.schemas.models.League(id = it.id.value, name = it.name, division = it.division, confederation = it.confederation, country_id = it.country.id.value ) }
+//            Leagues.selectAll().map { it.toLeague() }
         }
     }
-
-//    fun ResultRow.toClub() = Club (
-//        id = this[Clubs.id],
-//        countryId = this[Clubs.countryID],
-//        name = this[Clubs.name],
-//        stadiumName = this[Clubs.stadium],
-//        latitude = this[Clubs.latitude],
-//        longitude = this[Clubs.longitude]
-//    )
-//
-//    fun ResultRow.toCountry() = Country (
-//        id = this[Countries.id],
-//        name = this[Countries.name]
-//    )
-
-    fun ResultRow.toLeague() = League (
-        id = this[Leagues.id],
-        name = this[Leagues.name],
-        division = this[Leagues.division],
-        confederation = this[Leagues.confederation],
-        country_id = this[Leagues.country_id]
-    )
 
 }
