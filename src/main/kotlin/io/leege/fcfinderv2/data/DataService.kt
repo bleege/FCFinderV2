@@ -3,6 +3,7 @@ package io.leege.fcfinderv2.data
 import io.leege.fcfinderv2.data.dao.ClubDAO
 import io.leege.fcfinderv2.data.dao.CountryDAO
 import io.leege.fcfinderv2.data.dao.LeagueDAO
+import io.leege.fcfinderv2.data.tables.Leagues
 import io.leege.fcfinderv2.schemas.models.Club
 import io.leege.fcfinderv2.schemas.models.Country
 import io.leege.fcfinderv2.schemas.models.League
@@ -38,4 +39,16 @@ class DataService {
         }
     }
 
+    fun getLeaguesByCountry(countryId: Int): List<League> {
+        return transaction {
+            addLogger(Slf4jSqlDebugLogger)
+            LeagueDAO.find { Leagues.countryId eq countryId }.map { it.adaptTo() }
+        }
+    }
+
+//    fun getClubsByLeagueAndYear(leagueId: Int, year: Int): List<Club> {
+//        return transaction {
+//            addLogger(Slf4jSqlDebugLogger)
+//        }
+//    }
 }

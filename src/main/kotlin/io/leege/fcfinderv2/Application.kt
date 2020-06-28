@@ -62,6 +62,10 @@ class Application {
                 leagueService.getAllLeagues()
             }
 
+            get("leaguesbycountry") { _,_ ->
+                leagueService.getLeaguesByCountryId(1)
+            }
+
             /* GraphQL Handler */
 
             post("/graphql") { request, response ->
