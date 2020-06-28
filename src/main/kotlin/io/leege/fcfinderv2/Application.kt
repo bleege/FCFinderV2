@@ -66,6 +66,10 @@ class Application {
                 leagueService.getLeaguesByCountryId(1)
             }
 
+            get("clubsbyleagueandyear") { _,_ ->
+                clubsService.getClubsByLeagueAndYear(leagueId = 1, year = 2020)
+            }
+
             /* GraphQL Handler */
 
             post("/graphql") { request, response ->
