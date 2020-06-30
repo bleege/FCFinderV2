@@ -3,6 +3,7 @@ package io.leege.fcfinderv2
 import io.leege.fcfinderv2.schemas.ClubsService
 import io.leege.fcfinderv2.schemas.CountryService
 import io.leege.fcfinderv2.schemas.LeagueService
+import io.leege.fcfinderv2.schemas.LeaguesByCountryParams
 import org.apache.log4j.PropertyConfigurator
 import org.slf4j.LoggerFactory
 import spark.Spark.*
@@ -63,11 +64,11 @@ class Application {
             }
 
             get("leaguesbycountry") { _,_ ->
-                leagueService.getLeaguesByCountryId(1)
+                leagueService.getLeaguesByCountryId(LeaguesByCountryParams(1))
             }
 
             get("clubsbyleagueandyear") { _,_ ->
-                clubsService.getClubsByLeagueAndYear(leagueId = 1, year = 2020)
+                clubsService.getClubsByLeagueAndYear(leagueId = 2, year = 2020)
             }
 
             /* GraphQL Handler */

@@ -5,6 +5,8 @@ import io.leege.fcfinderv2.data.DataService
 class LeagueService(val dataService: DataService = DataService()) {
 
     fun getAllLeagues() = dataService.getAllLeagues()
-    fun getLeaguesByCountryId(countryId: Int) = dataService.getLeaguesByCountry(countryId = countryId)
+    fun getLeaguesByCountryId(params: LeaguesByCountryParams) = dataService.getLeaguesByCountry(countryId = params.id)
 
 }
+
+data class LeaguesByCountryParams(val id: Int)
