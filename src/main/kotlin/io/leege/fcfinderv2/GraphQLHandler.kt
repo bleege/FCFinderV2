@@ -13,6 +13,7 @@ import io.leege.fcfinderv2.schemas.ClubsService
 import io.leege.fcfinderv2.schemas.CountryService
 import io.leege.fcfinderv2.schemas.LeagueService
 import org.dataloader.DataLoaderRegistry
+import org.slf4j.LoggerFactory
 import spark.Request
 import spark.Response
 import java.io.IOException
@@ -20,6 +21,8 @@ import java.io.IOException
 // Based on https://github.com/ExpediaGroup/graphql-kotlin/blob/master/examples/spark/src/main/kotlin/com/expediagroup/graphql/examples/spark/GraphQLHandler.kt
 
 class GraphQLHandler {
+
+    val logger = LoggerFactory.getLogger(GraphQLHandler::class.java)
 
     companion object {
         private val configuration = SchemaGeneratorConfig(supportedPackages = listOf("io.leege.fcfinderv2"))
@@ -41,6 +44,7 @@ class GraphQLHandler {
      */
     private fun getPayload(request: Request): Map<String, Any>? {
         return try {
+            logger.info("getPayload: request body = " + request.body())
             mapper.readValue<Map<String, Any>>(request.body())
         } catch (e: IOException) {
             throw IOException("Unable to parse GraphQL payload.")
