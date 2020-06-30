@@ -44,7 +44,7 @@ class GraphQLHandler {
      */
     private fun getPayload(request: Request): Map<String, Any>? {
         return try {
-            logger.info("getPayload: request body = " + request.body())
+            logger.debug("getPayload: request body = " + request.body())
             mapper.readValue<Map<String, Any>>(request.body())
         } catch (e: IOException) {
             throw IOException("Unable to parse GraphQL payload.")
@@ -64,6 +64,7 @@ class GraphQLHandler {
         val result = mutableMapOf<String, Any>()
 
         if (executionResult.errors.isNotEmpty()) {
+            logger.error("Errors: " + executionResult.errors)
             // if we encounter duplicate errors while data fetching, only include one copy
             result["errors"] = executionResult.errors.distinctBy {
                 if (it is ExceptionWhileDataFetching) {
