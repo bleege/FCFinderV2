@@ -35,8 +35,7 @@ class DataServiceMock: DataService {
 
     override fun getClubsByLeagueAndYear(leagueId: Int, year: Int): List<Club> {
         return listOf(
-            Club(id = 1, country = Country(id = 1, name = "Ireland"), name = "Cork City", stadiumName = "Turners Cross", latitude = 51.885528, longitude = -8.46775),
-            Club(id = 2, country = Country(id = 1, name = "Ireland"), name = "Galway United", stadiumName = "Eamonn Deacy Park", latitude = 53.284658, longitude = -9.056258)
+            Club(id = 1, country = Country(id = 1, name = "Ireland"), name = "Cork City", stadiumName = "Turners Cross", latitude = 51.885528, longitude = -8.46775)
         )
     }
 
