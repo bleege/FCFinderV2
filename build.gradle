@@ -3,6 +3,7 @@ plugins {
     id("application")
     id 'java'
     id 'war'
+    id "com.expediagroup.graphql" version "3.4.1"
 }
 
 group 'io.leege'
