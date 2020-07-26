@@ -39,7 +39,7 @@ class GraphQLHandler {
          * Return GraphQL Schema as String
          */
         fun printGraphqlSchema(): String {
-            return graphQLSchema.toString()
+            return graphQLSchema.definition.toString()
         }
     }
 
