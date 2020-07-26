@@ -72,10 +72,6 @@ class Application {
 
             /* GraphQL Handler */
 
-            get("/graphql/sdl") { _,_ ->
-                GraphQLHandler.printGraphqlSchema()
-            }
-
             post("/graphql") { request, response ->
                 graphQLHandler.handle(request, response)
             }

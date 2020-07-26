@@ -34,13 +34,6 @@ class GraphQLHandler {
 
         private val graphQLSchema = toSchema(configuration, queries)
         val graphQL = GraphQL.newGraphQL(graphQLSchema).build()
-
-        /**
-         * Return GraphQL Schema as String
-         */
-        fun printGraphqlSchema(): String {
-            return graphQLSchema.definition.toString()
-        }
     }
 
     private val mapper = jacksonObjectMapper()
