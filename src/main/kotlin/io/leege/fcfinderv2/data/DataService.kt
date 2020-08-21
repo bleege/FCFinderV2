@@ -9,5 +9,6 @@ interface DataService {
     fun getAllCountries(): List<Country>
     fun getAllLeagues(): List<League>
     fun getLeaguesByCountry(countryId: Int): List<League>
+    fun getYearsForLeague(leagueId: Int): List<Int>
     fun getClubsByLeagueAndYear(leagueId: Int, year: Int): List<Club>
 }

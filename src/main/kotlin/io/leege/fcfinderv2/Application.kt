@@ -62,6 +62,10 @@ class Application {
                 leagueService.getAllLeagues()
             }
 
+            get("leagueyears") { _,_ ->
+                leagueService.getYearsForLeague(leagueId = 1)
+            }
+
             get("leaguesbycountry") { _,_ ->
                 leagueService.getLeaguesByCountryId(1)
             }

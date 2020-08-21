@@ -47,6 +47,13 @@ class DataServiceImpl : DataService {
         }
     }
 
+    override fun getYearsForLeague(leagueId: Int): List<Int> {
+        return transaction {
+            addLogger(Slf4jSqlDebugLogger)
+            ClubsToLeaguesDAO.find { ClubsToLeagues.leagueId eq leagueId  }.map { it.year }.distinct().sorted()
+        }
+    }
+
     override fun getClubsByLeagueAndYear(leagueId: Int, year: Int): List<Club> {
         return transaction {
             addLogger(Slf4jSqlDebugLogger)

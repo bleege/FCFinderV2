@@ -27,6 +27,10 @@ class DataServiceMock: DataService {
         )
     }
 
+    override fun getYearsForLeague(leagueId: Int): List<Int> {
+        return listOf(2020, 2021, 2022)
+    }
+
     override fun getLeaguesByCountry(countryId: Int): List<League> {
         return listOf(
             League(id = 1, name = "Premier Division", division = 1, confederation = "UEFA", country = Country(id = 1, name = "Ireland"))

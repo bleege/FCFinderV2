@@ -21,6 +21,18 @@ class LeagueServiceTests {
         assertEquals("Ireland", league.country.name)
     }
 
+    @Test
+    fun testGetLeagueYears() {
+        val mock = DataServiceMock()
+        val service = LeagueService(dataService = mock)
+        val years = service.getYearsForLeague(1)
+        assertEquals(3, years.count())
+        assertEquals(2020, years.get(0))
+        assertEquals(2021, years.get(1))
+        assertEquals(2022, years.get(2))
+    }
+
+    @Test
     fun testGetLeaguesByCountry() {
         val mock = DataServiceMock()
         val service = LeagueService(dataService = mock)
